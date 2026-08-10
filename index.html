@@ -1,0 +1,218 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Programa Personalizado HSE | STEEL</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{--n:#071c2b;--n2:#0d3450;--o:#ff6b00;--b:#eef4f8;--c:#fff;--l:#d9e4eb;--t:#0d2340;--m:#63788e;--g:#18a76b;--r:#d9363e;--bl:#1769e0}
+*{box-sizing:border-box}body{margin:0;font:14px Arial,sans-serif;background:var(--b);color:var(--t)}button,input,select,textarea{font:inherit}.hidden{display:none!important}
+.login{min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;background:linear-gradient(135deg,#051725,#0d3753)}.hero{padding:70px;display:flex;flex-direction:column;justify-content:center;color:#fff}.brand{display:flex;align-items:center}.brandLogo{display:block;object-fit:contain;object-position:left center}.hero .brandLogo{width:370px;max-width:75%;height:120px}.side .brandLogo{width:100%;height:88px;object-position:center center}.mark,.steel{display:none}.hero h1{font-size:42px;margin:32px 0 10px}.hero p{max-width:760px;line-height:1.55;color:#d5e0e8}.loginR{display:flex;align-items:center;justify-content:center;padding:30px}.box{background:#fff;border-radius:20px;padding:28px;width:min(440px,100%);box-shadow:0 20px 60px #0006}label{display:block;font-size:12px;font-weight:800;margin:12px 0 6px}input,select,textarea{width:100%;padding:10px;border:1px solid #c9d6df;border-radius:9px;background:#fff}.btn{border:0;border-radius:9px;padding:10px 13px;font-weight:800;cursor:pointer}.pri{background:#0b61e8;color:#fff}.ora{background:var(--o);color:#fff}.lite{background:#fff;border:1px solid var(--l)}.danger{background:#ffe1e1;color:#a40000}.full{width:100%}.msg{margin-top:10px;padding:9px;border-radius:8px;background:#fff2cc;color:#735400;font-size:12px}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}.side{background:linear-gradient(180deg,#061827,#0d3450);padding:15px;color:#fff;position:sticky;top:0;height:100vh}.side .brand{padding:10px 7px 22px}.side .mark{font-size:42px}.side .steel{font-size:32px}.nav button{display:flex;align-items:center;gap:12px;width:100%;border:0;background:transparent;color:#fff;padding:12px;border-radius:9px;font-weight:700;cursor:pointer;text-align:left}.nav button:hover,.nav button.on{background:#143f5e;border-left:4px solid var(--o);padding-left:8px}.nav svg{width:19px}.sep{height:1px;background:#36536a;margin:9px}.logout{margin-top:14px;width:100%}
+main{padding:18px 22px 0}.top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.ey{color:var(--o);font-size:12px;font-weight:900;letter-spacing:.5px}h1{margin:3px 0;font-size:27px}h2{margin:0;font-size:18px}.mut{color:var(--m);font-size:13px}.user{background:#fff;border:1px solid var(--l);border-radius:11px;padding:10px 13px;min-width:250px;box-shadow:0 4px 14px #17324d12}.user b{display:block}.toolbar,.head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.toolbar{margin:18px 0 12px}.period{background:#fff;border:1px solid var(--l);border-radius:11px;padding:10px 12px;min-width:260px}.period label{margin:0 0 5px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{background:#fff;border:1px solid var(--l);border-radius:13px;box-shadow:0 4px 16px #17324d10}.kpi{padding:16px}.kpi span{color:var(--m);font-size:12px}.kpi strong{display:block;font-size:32px;margin-top:7px}.pill{display:inline-block;padding:5px 8px;border-radius:99px;font-size:11px;font-weight:900}.red{background:#ffdede;color:#ad0000}.green{background:#dff7e9;color:#14724c}.blue{background:#dbeafe;color:#0b51c5}.amber{background:#fff1cc;color:#785500}
+.programs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}.prog{padding:16px}.prog .head{margin-bottom:10px}.big{font-size:30px;font-weight:900}.bar{height:8px;background:#e4ebf0;border-radius:99px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;background:var(--g)}
+.section{margin-top:12px;padding:15px}.view{display:none}.view.active{display:block}table{width:100%;border-collapse:collapse}th,td{padding:10px 8px;border-bottom:1px solid #e6edf2;text-align:left;font-size:12px;vertical-align:middle}th{font-size:10px;text-transform:uppercase;color:#627990;background:#f8fafb}
+.modal{display:none;position:fixed;inset:0;background:#00111dcc;align-items:center;justify-content:center;z-index:50;padding:18px}.modal.show{display:flex}.modalbox{background:#fff;border-radius:16px;width:min(700px,95vw);max-height:92vh;overflow:auto;padding:20px}.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;gap:6px;flex-wrap:wrap}.footer{margin:16px -22px 0;background:#08264a;color:#dce8f5;padding:12px 22px;display:flex;justify-content:space-between;font-size:11px}
+@media(max-width:1050px){.grid4{grid-template-columns:1fr 1fr}.programs{grid-template-columns:1fr}}@media(max-width:760px){.login{grid-template-columns:1fr}.hero{display:none}.app{grid-template-columns:78px 1fr}.side{padding:8px}.side .steel{display:none}.side .mark{font-size:36px}.nav button{font-size:0;justify-content:center}.nav button svg{width:22px}.nav button.on{border-left:0;border-bottom:3px solid var(--o);padding-left:12px}.top{flex-direction:column}.grid4{grid-template-columns:1fr}.fg{grid-template-columns:1fr}}
+</style></head><body>
+<section id="login" class="login"><div class="hero"><div class="brand"><img class="brandLogo" src="logo.png" alt="STEEL Ingeniería"></div><h1>Programa Personalizado HSE</h1><p>Contrato N° 4644008935 - Servicio de Mejoramiento de Suelo, Shifting y Arriendo de Equipos, Área Ripios.</p><p>Gestión integrada de ANTUCOYA, VELTIS y STEEL con usuarios, cumplimiento mensual, evidencias, validación HSE y auditoría.</p></div><div class="loginR"><div class="box"><h2>Ingresar al sistema</h2><div class="mut">Use su correo y contraseña asignados.</div><label>Correo</label><input id="email" type="email"><label>Contraseña</label><input id="pass" type="password"><button class="btn pri full" style="margin-top:15px" onclick="signIn()">INGRESAR</button><div id="loginMsg"></div></div></div></section>
+<div id="app" class="app hidden"><aside class="side"><div class="brand"><img class="brandLogo" src="logo.png" alt="STEEL Ingeniería"></div><nav class="nav">
+<button class="on" data-v="dash"><i data-lucide="layout-dashboard"></i>Dashboard</button><button data-v="mine"><i data-lucide="check-circle-2"></i>Mi Personalizado</button><button data-v="profile"><i data-lucide="user-round"></i>Mi Perfil</button><button data-v="ant"><i data-lucide="building-2"></i>Antucoya</button><button data-v="vel"><i data-lucide="factory"></i>Veltis</button><button data-v="steel"><i data-lucide="hard-hat"></i>Steel</button><div class="sep"></div><button data-v="evid"><i data-lucide="file-text"></i>Evidencias</button><button class="admin" data-v="users"><i data-lucide="users"></i>Usuarios</button><button class="admin" data-v="audit"><i data-lucide="list-checks"></i>Auditoría</button></nav><button class="btn lite logout" onclick="signOut()">Cerrar sesión</button></aside>
+<main><div class="top"><div><div class="ey">STEEL INGENIERÍA · PROGRAMA PERSONALIZADO HSE</div><h1>Control de Cumplimiento</h1><div class="mut">Contrato N° 4644008935 - Servicio de Mejoramiento de Suelo, Shifting y Arriendo de Equipos, Área Ripios</div></div><div class="user"><b id="uname"></b><span class="mut" id="urole"></span></div></div>
+<section id="dash" class="view active"><div class="toolbar"><div class="period"><label>Período</label><input id="period" type="month" onchange="load()"></div><button class="btn pri" onclick="exportCsv()">Descargar reporte CSV</button></div><div class="grid4"><div class="card kpi"><span>Programado</span><strong id="kp">—</strong></div><div class="card kpi"><span>Aprobado HSE</span><strong id="ka">—</strong></div><div class="card kpi"><span>Pendiente aprobación</span><strong id="kpend">—</strong><em class="pill amber">POR VALIDAR</em></div><div class="card kpi"><span>Cumplimiento</span><strong id="kpc">—</strong><em id="kst" class="pill red">—</em></div></div><div id="progCards" class="programs"></div><div class="card section admin"><div class="head"><h2>Consolidado por usuario</h2><span class="pill blue">Cumplimiento individual</span></div><div id="userSum"></div></div></section>
+
+<section id="profile" class="view">
+  <div class="card section">
+    <div class="head">
+      <div>
+        <h2>Mi Perfil</h2>
+        <div class="mut">Información asociada a tu cuenta del Programa Personalizado HSE.</div>
+      </div>
+      <span class="pill blue"><i data-lucide="shield-check" style="width:14px"></i> CUENTA SEGURA</span>
+    </div>
+    <div class="fg" style="margin-top:14px">
+      <div class="card" style="padding:14px;background:#f8fbfd"><div class="mut">Nombre completo</div><div id="pfName" style="font-weight:900;font-size:16px;margin-top:5px">—</div></div>
+      <div class="card" style="padding:14px;background:#f8fbfd"><div class="mut">Correo electrónico</div><div id="pfEmail" style="font-weight:900;font-size:16px;margin-top:5px">—</div></div>
+      <div class="card" style="padding:14px;background:#f8fbfd"><div class="mut">Cargo</div><div id="pfRole" style="font-weight:900;font-size:16px;margin-top:5px">—</div></div>
+      <div class="card" style="padding:14px;background:#f8fbfd"><div class="mut">Detalle / Turno</div><div id="pfJob" style="font-weight:900;font-size:16px;margin-top:5px">—</div></div>
+    </div>
+    <div class="card" style="margin-top:18px;padding:16px;background:#f8fbfd">
+      <div class="head">
+        <div>
+          <h2 style="font-size:17px">Seguridad de la cuenta</h2>
+          <div class="mut">El cambio de contraseña requiere validación mediante el correo electrónico asignado a tu cuenta.</div>
+        </div>
+        <i data-lucide="mail-check" style="width:28px;height:28px;color:#0b61e8"></i>
+      </div>
+      <div id="reauthStep1" style="margin-top:12px">
+        <div class="msg">Se enviará un código de seguridad de 6 dígitos al correo asignado a tu cuenta: <b id="pfEmailHint"></b>.</div>
+        <button id="sendCodeBtn" class="btn pri" style="margin-top:12px" onclick="sendReauthCode()"><i data-lucide="send" style="width:16px"></i> ENVIAR CÓDIGO A MI CORREO</button>
+      </div>
+      <div id="reauthStep2" class="hidden" style="margin-top:12px">
+        <div class="msg" style="background:#eaf3ff;color:#164c8b">Código enviado. Revisa tu correo e ingresa el código recibido para autorizar el cambio.</div>
+        <div class="fg">
+          <div><label>Código de seguridad</label><input id="reauthCode" inputmode="numeric" maxlength="6" placeholder="000000"></div>
+          <div></div>
+          <div><label>Nueva contraseña</label><input id="reauthNewPw" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres"></div>
+          <div><label>Confirmar nueva contraseña</label><input id="reauthConfirmPw" type="password" autocomplete="new-password"></div>
+        </div>
+        <div id="profilePasswordMsg"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+          <button id="confirmPasswordBtn" class="btn pri" onclick="confirmEmailPasswordChange()"><i data-lucide="key-round" style="width:16px"></i> CAMBIAR CONTRASEÑA</button>
+          <button class="btn lite" onclick="sendReauthCode()">REENVIAR CÓDIGO</button>
+          <button class="btn lite" onclick="cancelPasswordChange()">CANCELAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mine" class="view"><div class="card section"><div class="head"><h2>Mi Personalizado</h2><span id="rolepill" class="pill blue"></span></div><div id="mineTable"></div></div></section>
+<section id="ant" class="view"><div class="card section"><div class="head"><h2>ANTUCOYA</h2></div><div id="antTable"></div></div></section>
+<section id="vel" class="view"><div class="card section"><div class="head"><h2>VELTIS</h2></div><div id="velTable"></div></div></section>
+<section id="steel" class="view"><div class="card section"><div class="head"><h2>STEEL</h2></div><div id="steelTable"></div></div></section>
+<section id="evid" class="view"><div class="card section"><div class="head"><div><h2>Evidencias</h2><div class="mut">Puedes eliminar tus propios archivos mientras no estén aprobados por HSE y luego adjuntar el respaldo correcto.</div></div><button class="btn pri" onclick="openEv()">+ Cargar evidencia</button></div><div id="missingWrap" style="margin-bottom:14px"></div><div id="evTable"></div></div></section>
+<section id="users" class="view admin"><div class="card section"><div class="head"><h2>Usuarios</h2><button class="btn pri" onclick="openUser()">+ Crear usuario</button></div><div id="usersTable"></div></div></section>
+<section id="audit" class="view admin"><div class="card section"><div class="head"><h2>Auditoría</h2><button class="btn lite" onclick="loadAudit()">Actualizar</button></div><div id="auditTable"></div></div></section>
+<div class="footer"><span>© 2026 STEEL INGENIERÍA · Programa Personalizado HSE</span><span>Cero Daño a las Personas, Equipos y Procesos</span></div></main></div>
+<div id="attachM" class="modal"><div class="modalbox"><div class="head"><div><h2>Adjuntar archivo correcto</h2><div class="mut" id="attachTitle"></div></div><button class="btn lite" onclick="closeM('attachM')">✕</button></div><input id="attachCid" type="hidden"><label>Archivo</label><input id="attachFile" type="file" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx,.ppt,.pptx,.csv,.txt"><div class="mut" style="margin-top:6px">PDF, imágenes, Excel, Word, PowerPoint, CSV o TXT. Máximo 25 MB.</div><button class="btn pri full" style="margin-top:14px" onclick="uploadMissing()">ADJUNTAR ARCHIVO</button></div></div>
+<div id="evM" class="modal"><div class="modalbox"><div class="head"><h2>Registrar cumplimiento</h2><button class="btn lite" onclick="closeM('evM')">✕</button></div><label>Actividad</label><select id="evAct"></select><div class="fg"><div><label>Fecha</label><input id="evDate" type="date"></div><div><label>Área / sector</label><input id="evArea" value="Botadero de Ripios / Área Seca"></div></div><label>Observación</label><textarea id="evNote" rows="3"></textarea><label>Archivo</label><input id="evFile" type="file" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx,.ppt,.pptx,.csv,.txt"><button class="btn pri full" style="margin-top:14px" onclick="saveCompletion()">GUARDAR</button></div></div>
+<div id="valM" class="modal"><div class="modalbox"><div class="head"><h2>Validar cumplimiento</h2><button class="btn lite" onclick="closeM('valM')">✕</button></div><input id="valId" type="hidden"><label>Estado</label><select id="valStatus"><option value="aprobada">Aprobada</option><option value="observada">Observada</option><option value="rechazada">Rechazada</option><option value="pendiente_validacion">Pendiente</option></select><label>Comentario</label><textarea id="valNote" rows="3"></textarea><button class="btn pri full" style="margin-top:14px" onclick="validateC()">GUARDAR</button></div></div>
+<div id="userM" class="modal"><div class="modalbox"><div class="head"><h2 id="userTitle">Crear usuario</h2><button class="btn lite" onclick="closeM('userM')">✕</button></div><input id="uid" type="hidden"><div class="fg"><div><label>Nombre</label><input id="ufull"></div><div><label>Correo</label><input id="uemail"></div><div><label>Cargo</label><select id="urol"><option value="administrador_contrato">Administrador de Contrato</option><option value="jefe_hse">Jefe HSE</option><option value="jefe_operaciones">Jefe de Operaciones</option><option value="supervisor">Supervisor</option><option value="prevencionista">Prevencionista de Riesgos</option><option value="jefe_flota">Jefe de Flota</option><option value="cuadrilla">Cuadrilla</option></select></div><div><label>Detalle</label><input id="ujob"></div></div><div id="pwWrap"><label>Contraseña inicial</label><input id="upw" type="password"></div><button class="btn pri full" style="margin-top:14px" onclick="saveUser()">GUARDAR USUARIO</button></div></div>
+
+<script>
+const SB='https://esxsgmasxrlrbaozdkbc.supabase.co', KEY='sb_publishable_986mv8PchD3EYAACV228og_Y3dMiIFZ', sb=supabase.createClient(SB,KEY);
+const roles={admin_hse:'Administrador HSE',administrador_contrato:'Administrador de Contrato',jefe_hse:'Jefe HSE',jefe_operaciones:'Jefe de Operaciones',supervisor:'Supervisor',prevencionista:'Prevencionista de Riesgos',jefe_flota:'Jefe de Flota',cuadrilla:'Cuadrilla'};
+let me,profile,programs=[],activities=[],targets=[],assign=[],comps=[],files=[],sum=[],profiles=[],selectedUsers=[];
+function msg(t){loginMsg.innerHTML='<div class="msg">'+t+'</div>'} function cls(p){return p>=90?'green':p>=70?'amber':'red'} function periodDates(){let [y,m]=(period.value||new Date().toISOString().slice(0,7)).split('-').map(Number),s=`${y}-${String(m).padStart(2,'0')}-01`,e=new Date(y,m,0),end=`${e.getFullYear()}-${String(e.getMonth()+1).padStart(2,'0')}-${String(e.getDate()).padStart(2,'0')}`;return{s,end}}
+
+
+function renderProfile(){
+  if(!profile||!me)return;
+  pfName.textContent=profile.full_name||'—';
+  pfEmail.textContent=me.email||'—';
+  pfRole.textContent=roles[profile.role]||profile.role||'—';
+  pfJob.textContent=profile.job_title||'—';
+  pfEmailHint.textContent=maskEmail(me.email||'');
+}
+function maskEmail(email){
+  const [u,d]=String(email).split('@');
+  if(!u||!d)return email||'correo registrado';
+  const visible=u.length<=2?u[0]||'*':u.slice(0,2);
+  return visible+'***@'+d;
+}
+function profilePasswordMessage(text,ok=false){
+  profilePasswordMsg.innerHTML=`<div class="msg" style="margin-top:10px;${ok?'background:#dff7e9;color:#14724c':'background:#ffe1e1;color:#a40000'}">${text}</div>`;
+}
+async function sendReauthCode(){
+  if(!me?.email)return profilePasswordMessage('No se pudo identificar el correo electrónico de la cuenta.');
+  sendCodeBtn.disabled=true;
+  sendCodeBtn.textContent='ENVIANDO...';
+  profilePasswordMsg.innerHTML='';
+  const {error}=await sb.auth.reauthenticate();
+  sendCodeBtn.disabled=false;
+  sendCodeBtn.innerHTML='<i data-lucide="send" style="width:16px"></i> ENVIAR CÓDIGO A MI CORREO';
+  lucide.createIcons();
+  if(error)return profilePasswordMessage('No se pudo enviar el código: '+error.message);
+  reauthStep1.classList.add('hidden');
+  reauthStep2.classList.remove('hidden');
+  reauthCode.value='';reauthNewPw.value='';reauthConfirmPw.value='';
+  profilePasswordMessage('Código enviado a '+maskEmail(me.email)+'.',true);
+  setTimeout(()=>reauthCode.focus(),100);
+}
+function cancelPasswordChange(){
+  reauthStep2.classList.add('hidden');
+  reauthStep1.classList.remove('hidden');
+  reauthCode.value='';reauthNewPw.value='';reauthConfirmPw.value='';profilePasswordMsg.innerHTML='';
+}
+async function confirmEmailPasswordChange(){
+  const nonce=reauthCode.value.trim(), pw=reauthNewPw.value, confirm=reauthConfirmPw.value;
+  if(!/^\d{6}$/.test(nonce))return profilePasswordMessage('Ingresa el código de seguridad de 6 dígitos enviado a tu correo.');
+  if(pw.length<8)return profilePasswordMessage('La nueva contraseña debe tener al menos 8 caracteres.');
+  if(pw!==confirm)return profilePasswordMessage('Las contraseñas no coinciden.');
+  confirmPasswordBtn.disabled=true;confirmPasswordBtn.textContent='VALIDANDO...';
+  try{
+    const {error}=await sb.auth.updateUser({password:pw,nonce});
+    if(error)throw error;
+    profilePasswordMessage('Contraseña actualizada correctamente. Tu correo fue validado.',true);
+    reauthCode.value='';reauthNewPw.value='';reauthConfirmPw.value='';
+    setTimeout(()=>cancelPasswordChange(),1800);
+  }catch(e){
+    profilePasswordMessage(e?.message||'El código no es válido o expiró. Solicita uno nuevo.');
+  }finally{
+    confirmPasswordBtn.disabled=false;
+    confirmPasswordBtn.innerHTML='<i data-lucide="key-round" style="width:16px"></i> CAMBIAR CONTRASEÑA';
+    lucide.createIcons();
+  }
+}
+async function signIn(){let {error}=await sb.auth.signInWithPassword({email:email.value.trim(),password:pass.value});if(error)return msg(error.message);boot()} async function signOut(){await sb.auth.signOut();location.reload()}
+async function boot(){let {data:{user}}=await sb.auth.getUser();if(!user)return;me=user;let {data,error}=await sb.from('profiles').select('*').eq('id',user.id).single();if(error)return msg(error.message);profile=data;if(!profile.active)return msg('Cuenta desactivada');login.classList.add('hidden');app.classList.remove('hidden');uname.textContent=profile.full_name;urole.textContent=roles[profile.role]||profile.role;rolepill.textContent=roles[profile.role]||profile.role;document.querySelectorAll('.admin').forEach(x=>x.classList.toggle('hidden',profile.role!=='admin_hse'));period.value=new Date().toISOString().slice(0,7);await load();renderProfile();lucide.createIcons()}
+function go(id){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button[data-v]').forEach(x=>x.classList.toggle('on',x.dataset.v===id))} document.querySelectorAll('.nav button[data-v]').forEach(b=>b.onclick=()=>go(b.dataset.v));
+async function load(){let p=await sb.from('programs').select('*').order('code');programs=p.data||[];let a=await sb.from('activities').select('*').eq('active',true).order('activity_number');activities=a.data||[];let t=await sb.from('activity_role_targets').select('*');targets=t.data||[];let as=await sb.from('assignments').select('*');assign=as.data||[];let c=await sb.from('completions').select('*').order('performed_at',{ascending:false});comps=c.data||[];let f=await sb.from('evidence_files').select('*').order('created_at',{ascending:false});files=f.data||[];let d=periodDates(),rpc=profile.role==='admin_hse'?'admin_program_summary':'my_program_summary';let sm=await sb.rpc(rpc,{p_period_start:d.s,p_period_end:d.end});sum=sm.data||[];if(profile.role==='admin_hse'){let ps=await sb.from('profiles').select('*').order('full_name');profiles=ps.data||[];let us=await sb.rpc('admin_user_compliance_summary',{p_period_start:d.s,p_period_end:d.end});selectedUsers=(us.data||[]).filter(u=>u.role!=='admin_hse')}render()}
+function code(id){return programs.find(p=>p.id===id)?.code||''} function applicable(a){return profile.role==='admin_hse'||targets.some(t=>t.activity_id===a.id&&t.role===profile.role)} function target(a){return targets.find(t=>t.activity_id===a.id&&t.role===profile.role)?.target_count??a.target_count}
+function pendingCounts(){
+  let d=periodDates(), total=0, byProgram={}, byUser={};
+  files.forEach(f=>{
+    let i=info(f.completion_id), c=i.c;
+    if(!c) return;
+    let dt=c.performed_at?.slice(0,10);
+    if(!dt||dt<d.s||dt>d.end||c.status!=='pendiente_validacion') return;
+    total++;
+    byProgram[i.program]=(byProgram[i.program]||0)+1;
+    byUser[c.user_id]=(byUser[c.user_id]||0)+1;
+  });
+  return {total,byProgram,byUser};
+}
+function render(){
+ let tp=sum.reduce((s,x)=>s+Number(x.programmed||0),0),
+     ta=sum.reduce((s,x)=>s+Number(x.approved||0),0),
+     pc=tp?Math.round(ta*1000/tp)/10:0,
+     pend=pendingCounts();
+ kp.textContent=tp;
+ ka.textContent=ta;
+ kpend.textContent=pend.total;
+ kpc.textContent=pc+'%';
+ kst.className='pill '+cls(pc);
+ kst.textContent=pc>=90?'CUMPLE':pc>=70?'EN SEGUIMIENTO':'BAJO META';
+ progCards.innerHTML=['ANTUCOYA','VELTIS','STEEL'].map(cd=>{
+   let x=sum.find(s=>s.program_code===cd)||{programmed:0,realized:0,approved:0,percentage:0},
+       p=Number(x.percentage||0),
+       pe=pend.byProgram[cd]||0;
+   return `<div class="card prog"><div class="head"><h2>${cd}</h2><span class="pill ${cls(p)}">${p}%</span></div><div class="big">${x.approved||0} / ${x.programmed||0}</div><div class="mut">Aprobado HSE / Programado</div><div class="bar"><i style="width:${Math.min(100,p)}%"></i></div><div class="mut">Pendiente aprobación: <b>${pe}</b></div></div>`;
+ }).join('');
+ renderActs();renderEvidence();
+ if(profile.role==='admin_hse'){renderUserSum();renderUsers();loadAudit()}
+ lucide.createIcons()
+}
+function renderUserSum(){
+ let pend=pendingCounts();
+ userSum.innerHTML=`<table><thead><tr><th>Trabajador</th><th>Cargo</th><th>Detalle</th><th>Programado</th><th>Aprobado HSE</th><th>Pendiente aprobación</th><th>Cumplimiento</th></tr></thead><tbody>${selectedUsers.map(u=>`<tr><td><b>${u.full_name}</b></td><td>${roles[u.role]||u.role}</td><td>${u.job_title||'—'}</td><td>${u.programmed}</td><td>${u.approved}</td><td><span class="pill ${(pend.byUser[u.user_id]||0)>0?'amber':'green'}">${pend.byUser[u.user_id]||0}</span></td><td><span class="pill ${cls(Number(u.percentage))}">${u.percentage}%</span></td></tr>`).join('')}</tbody></table>`
+}
+function rows(list){
+  if(!list.length)return '<div class="mut">No hay actividades aplicables.</div>';
+  let d=periodDates();
+  return `<table><thead><tr><th>N°</th><th>Actividad</th><th>Frecuencia</th><th>Programado</th><th>Aprobado HSE</th><th>Pendiente aprobación</th><th>Estado</th><th></th></tr></thead><tbody>${list.map(a=>{
+    let ids=assign.filter(x=>x.activity_id===a.id&&(profile.role==='admin_hse'||x.user_id===me.id)).map(x=>x.id);
+    let cs=comps.filter(c=>ids.includes(c.assignment_id)&&c.performed_at?.slice(0,10)>=d.s&&c.performed_at?.slice(0,10)<=d.end);
+    let approved=cs.filter(c=>c.status==='aprobada'&&files.some(f=>f.completion_id===c.id)).length;
+    let pending=cs.filter(c=>c.status==='pendiente_validacion'&&files.some(f=>f.completion_id===c.id)).length;
+    let tg=profile.role==='admin_hse'?(a.target_count||1):target(a);
+    let pct=tg?Math.min(100,Math.round(approved*1000/tg)/10):0;
+    return `<tr><td>${a.activity_number||''}</td><td><b>${a.name}</b>${a.category?`<br><span class="mut">${a.category}</span>`:''}</td><td>${a.frequency||'—'}</td><td>${tg}</td><td>${approved}</td><td><span class="pill ${pending?'amber':'green'}">${pending}</span></td><td><span class="pill ${cls(pct)}">${pct}%</span></td><td>${profile.role==='admin_hse'?'—':`<button class="btn pri" onclick="openEv('${a.id}')">Registrar</button>`}</td></tr>`;
+  }).join('')}</tbody></table>`;
+}
+function renderActs(){let mine=activities.filter(applicable);mineTable.innerHTML=rows(mine);antTable.innerHTML=rows(mine.filter(a=>code(a.program_id)==='ANTUCOYA'));velTable.innerHTML=rows(mine.filter(a=>code(a.program_id)==='VELTIS'));steelTable.innerHTML=rows(mine.filter(a=>code(a.program_id)==='STEEL'));evAct.innerHTML=mine.map(a=>`<option value="${a.id}">${code(a.program_id)} · ${a.name}</option>`).join('')}
+function openEv(id){if(id)evAct.value=id;evDate.value=new Date().toISOString().slice(0,10);evArea.value='Botadero de Ripios / Área Seca';evNote.value='';evFile.value='';evM.classList.add('show')} function closeM(id){document.getElementById(id).classList.remove('show')}
+async function saveCompletion(){let aid=evAct.value,d=evDate.value,[y,m]=d.split('-').map(Number),s=`${y}-${String(m).padStart(2,'0')}-01`,ed=new Date(y,m,0),e=`${ed.getFullYear()}-${String(ed.getMonth()+1).padStart(2,'0')}-${String(ed.getDate()).padStart(2,'0')}`;let {data:asid,error}=await sb.rpc('ensure_my_assignment',{p_activity_id:aid,p_period_start:s,p_period_end:e});if(error)return alert(error.message);let {data:c,error:ce}=await sb.from('completions').insert({assignment_id:asid,user_id:me.id,performed_at:d+'T12:00:00',area:evArea.value,notes:evNote.value}).select().single();if(ce)return alert(ce.message);let f=evFile.files[0];if(f){if(f.size>26214400)return alert('Cumplimiento guardado, archivo supera 25 MB');let safe=f.name.replace(/[^a-zA-Z0-9._-]/g,'_'),path=`${me.id}/${y}/${code(activities.find(a=>a.id===aid).program_id)}/${c.id}/${Date.now()}_${safe}`;let {error:ue}=await sb.storage.from('evidencias-hse').upload(path,f);if(ue)return alert('Cumplimiento guardado, archivo falló: '+ue.message);let {error:fe}=await sb.from('evidence_files').insert({completion_id:c.id,uploader_id:me.id,storage_path:path,original_name:f.name,mime_type:f.type,size_bytes:f.size});if(fe)return alert(fe.message)}closeM('evM');await load();alert('Guardado correctamente')}
+function info(cid){let c=comps.find(x=>x.id===cid),as=c?assign.find(x=>x.id===c.assignment_id):null,a=as?activities.find(x=>x.id===as.activity_id):null,owner=profiles.find(x=>x.id===c?.user_id);return{c,a,owner,program:a?code(a.program_id):''}}
+function renderEvidence(){let d=periodDates(),list=files.filter(f=>{let i=info(f.completion_id),dt=i.c?.performed_at?.slice(0,10);return dt&&dt>=d.s&&dt<=d.end});let has=new Set(files.map(f=>f.completion_id)),missing=comps.filter(c=>c.user_id===me.id&&!has.has(c.id)&&c.performed_at?.slice(0,10)>=d.s&&c.performed_at?.slice(0,10)<=d.end&&c.status!=='aprobada');missingWrap.innerHTML=profile.role!=='admin_hse'&&missing.length?`<div class="card section" style="background:#fff9e8;border-color:#f3d88e"><div class="head"><div><b>Archivos pendientes de adjuntar</b><div class="mut">Estos cumplimientos quedaron sin archivo. Puedes adjuntar el respaldo correcto sin duplicar el registro.</div></div><span class="pill amber">${missing.length}</span></div><table><thead><tr><th>Fecha</th><th>Programa</th><th>Actividad</th><th></th></tr></thead><tbody>${missing.map(c=>{let i=info(c.id);return `<tr><td>${c.performed_at.slice(0,10)}</td><td>${i.program}</td><td>${i.a?.name||''}</td><td><button class="btn pri" onclick="openAttach('${c.id}')">Adjuntar archivo</button></td></tr>`}).join('')}</tbody></table></div>`:'';evTable.innerHTML=list.length?`<table><thead><tr><th>Fecha</th><th>Programa</th><th>Responsable</th><th>Actividad</th><th>Archivo</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>${list.map(f=>{let i=info(f.completion_id),st=i.c?.status||'pendiente_validacion',own=f.uploader_id===me.id;return `<tr><td>${i.c?.performed_at?.slice(0,10)||''}</td><td>${i.program}</td><td>${i.owner?.full_name||profile.full_name}</td><td>${i.a?.name||''}</td><td>${f.original_name}</td><td><span class="pill ${st==='aprobada'?'green':st==='observada'?'amber':'red'}">${st}</span></td><td class="actions"><button class="btn lite" onclick="downloadF('${f.id}')">Descargar</button>${profile.role==='admin_hse'?`<button class="btn pri" onclick="openVal('${f.completion_id}')">Validar</button>`:''}${st!=='aprobada'&&(profile.role==='admin_hse'||own)?`<button class="btn danger" onclick="deleteF('${f.id}')">Eliminar</button>`:''}</td></tr>`}).join('')}</tbody></table>`:'<div class="mut">No hay evidencias en este período.</div>'}
+async function downloadF(id){let f=files.find(x=>x.id===id),{data,error}=await sb.storage.from('evidencias-hse').download(f.storage_path);if(error)return alert(error.message);let u=URL.createObjectURL(data),a=document.createElement('a');a.href=u;a.download=f.original_name;a.click();URL.revokeObjectURL(u)}
+async function deleteF(id){let f=files.find(x=>x.id===id),i=info(f.completion_id),st=i.c?.status||'pendiente_validacion';if(st==='aprobada')return alert('La evidencia ya fue aprobada por HSE y no puede eliminarse.');if(f.uploader_id!==me.id&&profile.role!=='admin_hse')return alert('Solo puedes eliminar tus propios archivos.');if(!confirm('¿Eliminar el archivo '+f.original_name+'?\n\nEl cumplimiento se conservará para que puedas adjuntar el archivo correcto.'))return;let {error}=await sb.storage.from('evidencias-hse').remove([f.storage_path]);if(error)return alert('No se pudo eliminar el archivo: '+error.message);let r=await sb.from('evidence_files').delete().eq('id',id);if(r.error)return alert('El archivo se eliminó del almacenamiento, pero falló el registro: '+r.error.message);await load();alert('Archivo eliminado. Ahora puedes adjuntar el respaldo correcto en Archivos pendientes de adjuntar.')}
+function openAttach(cid){let i=info(cid);attachCid.value=cid;attachTitle.textContent=(i.program||'')+' · '+(i.a?.name||'');attachFile.value='';attachM.classList.add('show')}
+async function uploadMissing(){let cid=attachCid.value,f=attachFile.files[0];if(!f)return alert('Selecciona un archivo.');if(f.size>26214400)return alert('El archivo supera el máximo de 25 MB.');let i=info(cid);if(!i.c||i.c.user_id!==me.id)return alert('Este cumplimiento no te pertenece.');if(i.c.status==='aprobada')return alert('El cumplimiento ya está aprobado y no puede modificarse.');let y=new Date(i.c.performed_at).getFullYear(),safe=f.name.replace(/[^a-zA-Z0-9._-]/g,'_'),path=`${me.id}/${y}/${i.program||'GENERAL'}/${cid}/${Date.now()}_${safe}`;let {error:ue}=await sb.storage.from('evidencias-hse').upload(path,f);if(ue)return alert('No se pudo subir el archivo: '+ue.message);let {error:fe}=await sb.from('evidence_files').insert({completion_id:cid,uploader_id:me.id,storage_path:path,original_name:f.name,mime_type:f.type,size_bytes:f.size});if(fe)return alert('El archivo se subió, pero no se pudo registrar: '+fe.message);closeM('attachM');await load();alert('Archivo correcto adjuntado exitosamente.')}
+function openVal(cid){let i=info(cid);valId.value=cid;valStatus.value=i.c?.status||'pendiente_validacion';valNote.value=i.c?.validation_notes||'';valM.classList.add('show')} async function validateC(){let {error}=await sb.rpc('validate_completion',{p_completion_id:valId.value,p_status:valStatus.value,p_notes:valNote.value||null});if(error)return alert(error.message);closeM('valM');await load()}
+async function renderUsers(){usersTable.innerHTML=`<table><thead><tr><th>Nombre</th><th>Cargo</th><th>Detalle</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>${profiles.map(u=>`<tr><td><b>${u.full_name}</b></td><td>${roles[u.role]||u.role}</td><td>${u.job_title||'—'}</td><td><span class="pill ${u.active?'green':'red'}">${u.active?'Activo':'Desactivado'}</span></td><td><button class="btn lite" onclick="openUser('${u.id}')">Editar</button>${u.id!==me.id?` <button class="btn ${u.active?'danger':'lite'}" onclick="setActive('${u.id}',${!u.active})">${u.active?'Desactivar':'Activar'}</button>`:''}</td></tr>`).join('')}</tbody></table>`}
+async function openUser(id){uid.value=id||'';pwWrap.classList.toggle('hidden',!!id);upw.value='';if(id){let u=profiles.find(x=>x.id===id);ufull.value=u.full_name;urol.value=u.role;ujob.value=u.job_title||'';let {data,error}=await sb.functions.invoke('admin-users',{body:{action:'get_user',user_id:id}});if(error)return alert(error.message);uemail.value=data.email||'';userTitle.textContent='Editar usuario'}else{ufull.value='';uemail.value='';urol.value='supervisor';ujob.value='';userTitle.textContent='Crear usuario'}userM.classList.add('show')}
+async function saveUser(){let id=uid.value,body=id?{action:'update',user_id:id,email:uemail.value.trim(),full_name:ufull.value.trim(),role:urol.value,job_title:ujob.value.trim()}:{action:'create',email:uemail.value.trim(),password:upw.value,full_name:ufull.value.trim(),role:urol.value,job_title:ujob.value.trim()};let {data,error}=await sb.functions.invoke('admin-users',{body});if(error)return alert(error.message);if(data?.error)return alert(data.error);closeM('userM');await load()}
+async function setActive(id,active){let {data,error}=await sb.functions.invoke('admin-users',{body:{action:'set_active',user_id:id,active}});if(error)return alert(error.message);if(data?.error)return alert(data.error);await load()}
+async function loadAudit(){let {data,error}=await sb.from('audit_log').select('*').order('created_at',{ascending:false}).limit(200);if(error){auditTable.innerHTML='<div class="mut">'+error.message+'</div>';return}auditTable.innerHTML=`<table><thead><tr><th>Fecha</th><th>Acción</th><th>Elemento</th></tr></thead><tbody>${(data||[]).map(a=>`<tr><td>${new Date(a.created_at).toLocaleString('es-CL')}</td><td><b>${a.action}</b></td><td>${a.entity_type}</td></tr>`).join('')}</tbody></table>`}
+function exportCsv(){let pend=pendingCounts(),rows=[['Programa','Programado','Aprobado HSE','Pendiente aprobación','Cumplimiento %'],...sum.map(x=>[x.program_code,x.programmed,x.approved,pend.byProgram[x.program_code]||0,x.percentage])],csv=rows.map(r=>r.join(';')).join('\n'),b=new Blob([csv],{type:'text/csv'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='cumplimiento_hse_'+period.value+'.csv';a.click();URL.revokeObjectURL(u)}
+sb.auth.getSession().then(r=>{if(r.data.session)boot()});lucide.createIcons();
+</script></body></html>
